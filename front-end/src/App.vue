@@ -1,38 +1,26 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-
+import { RouterLink, RouterView } from "vue-router";
 </script>
 <script>
 export default {
-  data(){
-    return{
-      url: 'http://localhost:8000/api'
-    }
-  }
-}
+  data() {
+    return {
+      url: "http://localhost:8000/api",
+    };
+  },
+};
 </script>
 
 <template>
-  <nav class="navbar bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-  </div>
-</nav>
+  <h1>Iskola</h1>
   <header>
-
-    <div class="">
-      <nav>
-        <RouterLink to="/">Home</RouterLink> | 
-        <RouterLink to="/kartyak">Kártyák</RouterLink>
-      </nav>
-    </div>
+    <nav class="m-3">
+      <RouterLink to="/">Home</RouterLink> |
+      <RouterLink to="/kartyak">Kártyák</RouterLink>
+    </nav>
   </header>
 
-  <RouterView
-    :url="url"
-  />
+  <RouterView :url="url" />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
