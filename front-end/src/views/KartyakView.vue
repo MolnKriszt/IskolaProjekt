@@ -1,51 +1,73 @@
 <template>
+  <div>
     <!-- Header -->
     <div class="d-flex justify-content-between">
       <h2>Kártyák</h2>
       <div>
         <div class="dropdown">
           kártya/odal:
-          <button
-            class="btn btn-outline-secondary dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          > asdasd
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item">Action</a></li>
-          </ul>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            v-model="rowsPerPage"
+          >
+            <option
+              v-for="rowsnumber of rowsPerPageArray"
+              :key="rowsnumber"
+              :value="rowsnumber"
+            >
+              {{ rowsnumber }}
+            </option>
+          </select>
         </div>
       </div>
     </div>
     <!-- Kártyák -->
-    <!-- Ide mennek a kártyák -->
+    <div>
+      <Cards :datas="datas" />
+    </div>
 
-  <!-- Footer -->
-   <!-- Ide megy a paginátor -->
+    <!-- Footer -->
+    <!-- Ide megy a paginátor -->
+    <div>
+      <h4>Paginátor</h4>
+    </div> 
+  </div>
 </template>
 
 <script>
-import axios from 'axios'
+import Cards from "@/components/Cards.vue";
+import axios from "axios";
 export default {
-  props:['url'],
+  components: {Cards},
+  props: ["url"],
   data() {
-    return{
-      Datas:[],
-
-    }
+    return {
+      datas: [],
+      rowsPerPage: 5,
+      pageNumber: 1,
+      numberOfPages: 1,
+      rowsPerPageArray: [1, 3, 5, 10, 25, 50, 100],
+    };
   },
-  mounted(){
-    getDatas();
+  watch: {
+    rowsPerPage() {
+      this.getDatas();
+    },
   },
-  methods:{
-    async getDatas(){
-      
-    }
-  }
-}
+  mounted() {
+    this.getDatas();
+    
+  },
+  methods: {
+    async getDatas() {
+      const url = `${this.url}/queryOsztalynevsorLimit/${this.pageNumber}/${this.rowsPerPage}`;
+      const response = await axios.get(url);
+      this.datas = response.data.data;
+      console.log(this.datas);
+    },
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
