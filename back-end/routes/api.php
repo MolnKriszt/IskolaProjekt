@@ -22,6 +22,7 @@ Route::get('/queryOsztalynevsor', [QueriesController::class, 'queryOsztalynevsor
 Route::get('/queryOsztalytasrsak/{nev}', [QueriesController::class, 'queryOsztalytasrsak']);
 Route::get('/queryOsztalynevsorLimit/{oldal}/{limit}', [QueriesController::class, 'queryOsztalynevsorLimit']);
 Route::get('/queryHanyOldalVan/{limit}', [QueriesController::class, 'queryHanyOldalVan']);
+Route::get('/queryDiakKeres/{nev}', [QueriesController::class, 'queryDiakKeres']);
 
 
 
