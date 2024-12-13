@@ -12,15 +12,19 @@ export default {
 </script>
 
 <template>
-  <h1>Iskola</h1>
-  <header>
-    <nav class="m-3">
-      <RouterLink to="/">Home</RouterLink> |
-      <RouterLink to="/kartyak">Kártyák</RouterLink>
-    </nav>
-  </header>
+  <div>
 
-  <RouterView :url="url" />
+    <h1>Iskola</h1>
+    <header>
+      <nav class="m-3">
+        <RouterLink to="/">Home</RouterLink> |
+        <RouterLink to="/kartyak">Kártyák</RouterLink>
+        <RouterLink to="/betores">Betörés</RouterLink>
+      </nav>
+    </header>
+    
+    <RouterView :url="url" />
+  </div>
 </template>
 
 <style scoped></style>

@@ -65,11 +65,22 @@ class QueriesController extends Controller
                 (
                 select osztalyId
                     from diaks
-                    where nev = ?
-                ) and nev <> ?
+                    where nev = "'.$nev.'"
+                ) and nev <> "'.$nev.'"
             order by nev
             ';
-        $rows= DB::select($query,[$nev, $nev]);
+        $rows= DB::select($query);
+        // $query = '
+        //     select nev, osztalyId	from diaks
+        //     where osztalyId =
+        //         (
+        //         select osztalyId
+        //             from diaks
+        //             where nev = ?
+        //         ) and nev <> ?
+        //     order by nev
+        //     ';
+        // $rows= DB::select($query,[$nev, $nev]);
         $data = [
             'message' => 'ok',
             'data' => $rows
@@ -78,4 +89,34 @@ class QueriesController extends Controller
         return response()->json($data, options:JSON_UNESCAPED_UNICODE);
     }
     
+    public function queryDiakKeres(string $nev){
+        $query = '
+        SELECT * FROM diaks
+        WHERE nev = "'.$nev.'"';
+    $rows = DB::select($query);
+ 
+    $data = [
+        'message' => 'ok',
+        'data' => $rows,
+        'sql' =>  $query
+    ];
+ 
+    return response()->json($data, options: JSON_UNESCAPED_UNICODE);
+        //  $query = '
+        // SELECT * FROM diaks
+        // WHERE nev = ?
+       
+        // ';
+        // $rows= DB::select($query,[$nev]);
+        // $data = [
+        //     'message' => 'ok',
+        //     'data' => $rows,
+        //     'sql' =>  $query
+        // ];
+ 
+       
+        // return response()->json($data, options:JSON_UNESCAPED_UNICODE);
+    }
+ 
+
 }

