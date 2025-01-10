@@ -218,6 +218,9 @@ Authorization: Bearer {{token}}
 get {{host}}/api/queryOsztalynevsorok
 
 ###
+get {{host}}/api/queryOsztalynevsorokosszes
+
+###
 get {{host}}/api/queryOsztalynevsorokObj
 
 ### get Valakinek az osztálytársai

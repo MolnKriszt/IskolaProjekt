@@ -9,6 +9,20 @@ use Illuminate\Support\Facades\DB;
 
 class QeriesController extends Controller
 {
+
+    public function queryOsztalynevsorokosszes(){
+        $rows =  DB::select(
+            'SELECT  * FROM diaks d
+                INNER JOIN osztalies o ON d.osztalyId = o.id
+                ORDER BY osztalyNev'
+        );
+        $data = [
+            'message' => 'ok',
+            'data' => $rows
+        ];
+        return response()->json($data, options: JSON_UNESCAPED_UNICODE);
+    }
+
     public function queryOsztalynevsorok()
     {
         //natív SQL
